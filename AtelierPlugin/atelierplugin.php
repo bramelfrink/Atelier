@@ -11,4 +11,6 @@ add_action('wp_enqueue_scripts', 'atelier_custom_init');
 function atelier_custom_init() {
     wp_enqueue_script('atelier_custom_script', plugins_url('/js/atelier_custom_script.js', __FILE__));
 }
+
+add_action( 'wp_enqueue_scripts', 'atelier_custom_init');
 ?>
