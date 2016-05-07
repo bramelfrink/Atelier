@@ -7,6 +7,6 @@ function theme_enqueue_styles() {
 }
 
 function theme_enqueue_scripts() {
-    wp_enqueue_script( 'js-script', get_template_directory_uri() . '/js.css' );
+    wp_enqueue_script( 'js-script', get_template_directory_uri() . '/routes.js' );
 }
 ?>
