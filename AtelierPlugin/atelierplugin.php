@@ -38,8 +38,30 @@ register_activation_hook( __FILE__, 'atelier_install' );
 
 add_action('wp_enqueue_scripts', 'atelier_custom_init');
 
+add_action( 'wp_enqueue_scripts', 'register_jquery' );
+
+add_action( 'wp_enqueue_scripts', 'register_angular' );
+
 function atelier_custom_init() {
     wp_enqueue_script('atelier_custom_script', plugins_url('/js/atelier_custom_script.js', __FILE__));
+}
+
+function register_jquery() {
+    if (!is_admin() && $GLOBALS['pagenow'] != 'wp-login.php') {
+        // comment out the next two lines to load the local copy of jQuery
+        wp_deregister_script('jquery');
+        wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', false, '1.12.4');
+        wp_enqueue_script('jquery');
+    }
+}
+
+function register_angular() {
+    if (!is_admin() && $GLOBALS['pagenow'] != 'wp-login.php') {
+        // comment out the next two lines to load the local copy of jQuery
+        wp_deregister_script('angular');
+        wp_register_script('angular', 'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js', false, '1.5.7');
+        wp_enqueue_script('angular');
+    }
 }
 
 function atelier_api_init( $server ) {
