@@ -42,6 +42,8 @@ add_action( 'wp_enqueue_scripts', 'register_jquery' );
 
 add_action( 'wp_enqueue_scripts', 'register_angular' );
 
+add_action( 'wp_enqueue_scripts', 'register_routes' );
+
 function atelier_custom_init() {
     wp_enqueue_script('atelier_custom_script', plugins_url('/js/atelier_custom_script.js', __FILE__));
 }
@@ -60,6 +62,15 @@ function register_angular() {
         // comment out the next two lines to load the local copy of jQuery
         wp_deregister_script('angular');
         wp_register_script('angular', 'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js', false, '1.5.7');
+        wp_enqueue_script('angular');
+    }
+}
+
+function register_angular() {
+    if (!is_admin() && $GLOBALS['pagenow'] != 'wp-login.php') {
+        // comment out the next two lines to load the local copy of jQuery
+        wp_deregister_script('routes');
+        wp_register_script('routes', 'http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js', false, '1.4.8');
         wp_enqueue_script('angular');
     }
 }
